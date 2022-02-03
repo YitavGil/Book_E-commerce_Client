@@ -2,21 +2,21 @@ import React, {useState, useContext} from 'react';
 import {GlobalState} from '../../GlobalState';
 import menu from './icon/menu.svg';
 import close from './icon/close.svg';
-import cart from './icon/cart.svg';
+import cartIcon from './icon/cart.svg';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 
 const Header = () => {
     const state = useContext(GlobalState)
-    const [isLogged, setIsLogged] = state.userAPi.isLogged
-    const [isAdmin, setIsAdmin] = state.userAPi.isAdmin
+    const [isLogged] = state.userAPI.isLogged
+    const [isAdmin] = state.userAPI.isAdmin
+    const [cart] = state.userAPI.cart
 
     const logoutUser = async () =>{
         await axios.get('/user/logout')
         localStorage.clear()
-        setIsAdmin(false)
-        setIsLogged(false)
+       window.location.href = '/';
     }
 
     const adminRouter = () => {
@@ -71,9 +71,9 @@ const Header = () => {
             {
                 isAdmin ? '' : 
                     <div className='cart-icon'>
-                    <span>0</span>
+                    <span>{cart.length}</span>
                     <Link to='/cart'>
-                        <img src={cart} alt="cart" width="30"/>
+                        <img src={cartIcon} alt="cart" width="30"/>
                     </Link>
                     </div>
             }

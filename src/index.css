@@ -40,4 +40,7 @@ button{
 @import url('./comps/MainPages/bookdetail/booksetail.css');
 
 /* -------------Login/Register------------ */
-@import url('./comps/MainPages/auth/login.css')
+@import url('./comps/MainPages/auth/login.css');
+
+/* -------------Login/Register------------ */
+@import url('./comps/MainPages/cart/cart.css');

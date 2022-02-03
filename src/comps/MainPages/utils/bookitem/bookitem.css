@@ -64,3 +64,9 @@
     background: #5a4c2e;
     margin-left: 5px;
 }
+
+.book-card input{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+}

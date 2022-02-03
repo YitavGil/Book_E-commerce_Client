@@ -6,7 +6,7 @@ import Loading from '../utils/loading/Loading';
 const Books = () => {
   const state = useContext(GlobalState)
   const [books] = state.booksAPI.books
-  const [isAdmin] = state.userAPi.isAdmin
+  const [isAdmin] = state.userAPI.isAdmin
   console.log(books);
   
   return (
