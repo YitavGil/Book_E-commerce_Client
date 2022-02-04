@@ -23,9 +23,8 @@ const Header = () => {
         return(
             <>
                 <li><Link to='/create_product'>Create Product</Link></li>
-                <li><Link to='/genre'>Genres</Link></li>
+                <li><Link to='/genres'>Genres</Link></li>
                 <li><Link to="/library">Library</Link></li>
-            
             </>
         )
     }
@@ -33,7 +32,6 @@ const Header = () => {
         return(
             <>
                 <li><Link to='/create_product'>Sell Books</Link></li>
-                <li><Link to='/history'>History</Link></li>
                 <li><Link to='/' onClick={logoutUser}>Logout</Link></li>
                 <li><Link to="/library">Library</Link></li>
             
@@ -56,6 +54,7 @@ const Header = () => {
 
             <ul>
                 <li><Link to="/">{isAdmin ? "Books" : "Shop"}</Link></li>
+                
 
                 {isAdmin && adminRouter()}
 

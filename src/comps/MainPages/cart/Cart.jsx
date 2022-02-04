@@ -22,7 +22,7 @@ const Cart = () => {
     getTotalPrice()
   }, [cart])
 
-  const handleCart = async () =>{ //Changes in the cart will remain after refresh
+  const handleCart = async (cart) =>{ //Changes in the cart will remain after refresh
     await axios.patch('/user/addtocart', {cart}, {
       headers: {Authorization: token}
     })
@@ -36,7 +36,7 @@ const Cart = () => {
     })
 
     setCart([...cart])
-    handleCart()
+    handleCart(cart)
   }
 
   const decrement = (id) =>{
@@ -47,7 +47,7 @@ const Cart = () => {
     })
 
     setCart([...cart])
-    handleCart()
+    handleCart(cart)
   }
 
   const removeFromCart = (id) =>{
@@ -59,12 +59,20 @@ const Cart = () => {
       })
 
       setCart([...cart])
-      handleCart()
+      handleCart(cart)
     }
   }
 
   const transferSuccess = async(payment) => {
-    
+    const {paymentID, address} = payment;
+
+    await axios.post('/payment', {cart, paymentID, address},{
+      headers: {Authorization: token}
+    })
+
+    setCart([])
+    handleCart(cart)
+    alert("Order was placed successfully.")
   }
 
   if(cart.length === 0){

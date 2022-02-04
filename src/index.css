@@ -42,5 +42,8 @@ button{
 /* -------------Login/Register------------ */
 @import url('./comps/MainPages/auth/login.css');
 
-/* -------------Login/Register------------ */
+/* -------------Cart------------ */
 @import url('./comps/MainPages/cart/cart.css');
+
+/* -------------Genres------------ */
+@import url('./comps/MainPages/genres/genres.css')
