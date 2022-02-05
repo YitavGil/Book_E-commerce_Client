@@ -7,15 +7,48 @@ const Genres = () => {
     const [genres, setGenres] = state.genreAPI.genres
     const [genre, setGenre] = useState('')
     const [token] = state.token
+    const [callback, setCallback] = state.genreAPI.callback
+    const [onEdit, setOnEdit] = useState(false)
+    const [id, setID] = useState('')
 
     const createGenre = async e =>{
         e.preventDefault()
         try {
-            const res = await axios.post('/genres', {name: genre},{
-                headers: {Authorization: token} 
+            if(onEdit) {
+                const res = await axios.put(`/genres/${id}`, {name: genre},{
+                    headers: {Authorization: token} 
             })
+            
 
-            console.log(res);
+            } else{
+                const res = await axios.post('/genres', {name: genre},{
+                    headers: {Authorization: token} 
+            })
+            
+            alert(res.data.msg)
+        }
+        setOnEdit(false)
+        setGenre("")
+        setCallback(!callback)
+
+        } catch (err) {
+            alert(err.response.data.msg)
+        }
+    }
+
+    const editGenre = async (id, name) =>{
+        setID(id)
+        setGenre(name)
+        setOnEdit(true)
+    }
+
+    const deleteGenre = async id =>{
+        try {
+            const res = await axios.delete(`genres/${id}`, {
+                headers: {Authorization: token}
+            })
+            alert(res.data.msg)
+            setCallback(!callback)
         } catch (err) {
             alert(err.response.data.msg)
         }
@@ -29,7 +62,7 @@ const Genres = () => {
             onChange={(e) => setGenre(e.target.value)}
             />
 
-            <button type='submit'>Save</button>
+            <button type='submit'>{onEdit ? "Update" : "Save"}</button>
         </form>
 
         <div className="col">
@@ -38,8 +71,8 @@ const Genres = () => {
                     <div className='row' key={genre._id}>
                         <p>{genre.name}</p>
                         <div className="genre-btn">
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button onClick={() => editGenre(genre._id, genre.name)}>Edit</button>
+                            <button onClick={() => deleteGenre(genre._id)}>Delete</button>
                         </div>
                     </div>
                 ))
