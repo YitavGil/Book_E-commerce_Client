@@ -15,7 +15,7 @@ const BtnRender = ({book}) => {
             <Link id='buy-btn' to="#!">
                 Delete
             </Link>
-            <Link id='view-btn' to={`/edit_book/${book._id}`}>
+            <Link id='view-btn' to={`/edit_product/${book._id}`}>
                  Edit
             </Link>
         </>

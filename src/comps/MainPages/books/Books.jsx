@@ -7,17 +7,8 @@ import axios from 'axios';
 
 const Books = () => {
   const state = useContext(GlobalState)
-  const [books, setBooks] = state.booksAPI.books
+  const [books] = state.booksAPI.books
   const [isAdmin] = state.userAPI.isAdmin
-  
-  const getBooks = async () => {
-    const res = await axios.get('http://localhost:5000/books')
-    setBooks(res.data.books);
-}
-
-    useEffect(() => {
-       getBooks()
-     }, [])
 
 
   return (

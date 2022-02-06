@@ -5,7 +5,6 @@ import Loading from '../utils/loading/Loading';
 import { useHistory, useParams } from 'react-router-dom';
 
 const initialState = {
-    product_id: '',
     name: '',
     author: '',
     genre: '',
@@ -20,26 +19,32 @@ const CreateProduct = () => {
     const [genres] = state.genreAPI.genres
     const [images, setImages] = useState(false)
     const [loading, setLoading] = useState(false)
-
     const [isLogged] = state.userAPI.isLogged
     const [token] = state.token
 
     const history = useHistory()
     const param = useParams()
 
-    // const [books, setBooks] = state.bookAPI.books
+    const [books] = state.booksAPI.books
+    const [onEdit, setOnEdit] = useState(false)
+    const [callback, setCallback] = state.booksAPI.callback
     
-    // useEffect(() => {
-    //     if(param.id){
-    //         books.forEach(book => {
-    //             if(book._id === param.id){
-    //                 setProduct(product)
-    //                 setImages(book.images)
-    //             }
+    useEffect(() => {
+        if(param.id){
+            setOnEdit(true)
+            books.forEach(book => {
+                if(book._id === param.id){
+                    setProduct(book)
+                    setImages(book.images || book.imageUrl)
+                }
                 
-    //         })
-    //     }
-    // }, [param.id])
+            })
+        } else {
+            setOnEdit(false)
+            setProduct(initialState)
+            setImages(false)
+        }
+    }, [param.id, books])
 
     const handleUpload = async e =>{
         e.preventDefault()
@@ -97,12 +102,19 @@ const CreateProduct = () => {
             if(!isLogged) return alert("You have to be logged in to sell products")
             if(!images) return alert("You must include an image")
 
-            await axios.post('/books', {...product, images}, {
-                headers: {Authorization: token}
-            })
-
+            if(onEdit){
+                await axios.put(`/books/${product._id}`, {...product, images}, {
+                    headers: {Authorization: token}
+                })
+            }else{
+                await axios.post('/books', {...product, images}, {
+                    headers: {Authorization: token}
+                })
+    
+            }
             setImages(false)
             setProduct(initialState)
+            setCallback(!callback)
             history.push("/")
 
         } catch (err) {
@@ -122,7 +134,7 @@ const CreateProduct = () => {
                 loading ? <div id="file-img"><Loading /></div>
 
                 : <div id="file-img" style={styleUpload}>
-                     <img src={images ? images.url : ''} alt="" />
+                     <img src={images ? images.url : books.imageUrl} alt="" />
                      <span onClick={handleDestroy}> X </span>
                 </div>
             }
@@ -169,7 +181,7 @@ const CreateProduct = () => {
                 </select>
             </div>
 
-            <button type='submit'>Create</button>
+            <button type='submit'>{onEdit ? "Update" : "Create"}</button>
         </form>
     </div>
   )

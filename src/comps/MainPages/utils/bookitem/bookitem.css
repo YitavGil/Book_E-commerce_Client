@@ -82,3 +82,7 @@
     width: 25px;
     height: 25px;
 }
+
+.info-container h2{
+    text-transform: capitalize;
+}
