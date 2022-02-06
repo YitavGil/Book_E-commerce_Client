@@ -1,4 +1,5 @@
 import React from 'react';
+import CreateProduct from '../../createProduct/CreateProduct';
 import BtnRender from './BtnRender';
 
 const BookItem = ({book, isAdmin}) => {
@@ -7,7 +8,7 @@ const BookItem = ({book, isAdmin}) => {
      {
         isAdmin && <input type="checkbox" checked={book.checked} />
       }
-      <img src={book.imageUrl} alt="cover" />
+      <img src={book.imageUrl || book.images.url} alt="cover" />
       <div className='info-container'>
             <h2 name={book.name}>{book.name}</h2>
             <span>₪{book.price}</span>

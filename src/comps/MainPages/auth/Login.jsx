@@ -20,7 +20,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const token = await axios.post('/user/login', {...user})
-      console.log(token);
+      
+      localStorage.setItem('firstLogin', true)
+      
       const [getToken, setToken] = context.token
       setToken(token)
       history.push('/')

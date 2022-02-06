@@ -46,4 +46,7 @@ button{
 @import url('./comps/MainPages/cart/cart.css');
 
 /* -------------Genres------------ */
-@import url('./comps/MainPages/genres/genres.css')
+@import url('./comps/MainPages/genres/genres.css');
+
+/* -------------Create Product------------ */
+@import url('./comps/MainPages/createProduct/createProduct.css')

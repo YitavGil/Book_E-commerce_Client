@@ -62,7 +62,7 @@ const Genres = () => {
             onChange={(e) => setGenre(e.target.value)}
             />
 
-            <button type='submit'>{onEdit ? "Update" : "Save"}</button>
+            <button type='submit'>{onEdit ? "Update" : "Create"}</button>
         </form>
 
         <div className="col">

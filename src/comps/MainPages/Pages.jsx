@@ -22,6 +22,7 @@ const Pages = () => {
       <Route path='/login' exact component={isLogged ? NotFound : Login} />
       <Route path='/register' exact component={isLogged ? NotFound : Register} />
       <Route path='/create_product' exact component={isLogged ? CreateProduct : NotFound } />
+      <Route path='/edit_product/:id' exact component={isAdmin ? CreateProduct : NotFound } />
       <Route path='/cart' exact component={Cart} />
       <Route path='/Profile' exact component={Profile} />
       <Route path='/genres' exact component={isAdmin ? Genres : NotFound} />
