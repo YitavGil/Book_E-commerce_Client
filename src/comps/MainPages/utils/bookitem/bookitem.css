@@ -58,11 +58,23 @@
 #buy-btn{
     background: #ad7e6c;
     margin-right: 5px;
+    border-radius: 20px;
+    transition: all 0.3s linear;
+}
+
+#buy-btn:hover {
+    background: #cf9781;
 }
 
 #view-btn{
     background: #5a4c2e;
     margin-left: 5px;
+    border-radius: 20px;
+    transition: all 0.3s linear;
+}
+
+#view-btn:hover {
+    background: #857044;
 }
 
 .book-card input{

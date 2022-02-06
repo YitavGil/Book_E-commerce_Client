@@ -1,7 +1,8 @@
 import React, {useContext, useState, useEffect} from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { GlobalState } from '../../../GlobalState';
-import BookItem from '../utils/bookitem/BookItem'
+import BookItem from '../utils/bookitem/BookItem';
+import Reviews from '../utils/reviews/Reviews';
 
 const BookDetails = () => {
     const params = useParams();
@@ -48,6 +49,8 @@ const BookDetails = () => {
             }
         </div>
     </div>
+
+    <Reviews bookId={params.id}/>
   </>
   )
 };

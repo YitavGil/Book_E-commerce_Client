@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const GenreAPI = () => {
     const [genres, setGenres] = useState([]);
+    const [callback, setCallback] = useState(false)
 
     useEffect(() =>{
         const getGenres = async() =>{
@@ -11,9 +12,10 @@ const GenreAPI = () => {
         }
 
         getGenres()
-    },[])
+    },[callback])
   return{
-      genres: [genres, setGenres]
+      genres: [genres, setGenres],
+      callback: [callback, setCallback]
   }
 };
 

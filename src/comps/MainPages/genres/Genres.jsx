@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Genres = () => {
     const state = useContext(GlobalState)
-    const [genres, setGenres] = state.genreAPI.genres
+    const [genres] = state.genreAPI.genres
     const [genre, setGenre] = useState('')
     const [token] = state.token
     const [callback, setCallback] = state.genreAPI.callback
@@ -18,7 +18,7 @@ const Genres = () => {
                 const res = await axios.put(`/genres/${id}`, {name: genre},{
                     headers: {Authorization: token} 
             })
-            
+            alert(res.data.msg)
 
             } else{
                 const res = await axios.post('/genres', {name: genre},{

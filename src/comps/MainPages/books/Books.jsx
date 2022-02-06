@@ -3,11 +3,11 @@ import {GlobalState} from '../../../GlobalState';
 import BookItem from '../utils/bookitem/BookItem';
 import Loading from '../utils/loading/Loading';
 
+
 const Books = () => {
   const state = useContext(GlobalState)
   const [books] = state.booksAPI.books
   const [isAdmin] = state.userAPI.isAdmin
-  console.log(books);
   
   return (
     <>

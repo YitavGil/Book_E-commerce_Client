@@ -5,10 +5,11 @@ import BookDetails from './bookdetail/BookDetails';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import Cart from './cart/Cart';
-import Library from './library/Library';
+import Profile from './profile/Profile';
 import NotFound from './utils/notfound/NotFound';
 import { GlobalState } from '../../GlobalState';
 import Genres from './genres/Genres';
+import CreateProduct from './createProduct/CreateProduct';
 
 const Pages = () => {
   const state = useContext(GlobalState)
@@ -20,9 +21,10 @@ const Pages = () => {
       <Route path='/detail/:id' exact component={BookDetails} />
       <Route path='/login' exact component={isLogged ? NotFound : Login} />
       <Route path='/register' exact component={isLogged ? NotFound : Register} />
+      <Route path='/create_product' exact component={isLogged ? CreateProduct : NotFound } />
       <Route path='/cart' exact component={Cart} />
-      <Route path='/library' exact component={Library} />
-      <Route path='/genres' exact component={Genres} />
+      <Route path='/Profile' exact component={Profile} />
+      <Route path='/genres' exact component={isAdmin ? Genres : NotFound} />
 
       <Route path='*' exact component={NotFound} />
     </Switch>

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import {GlobalState} from '../../GlobalState';
 import menu from './icon/menu.svg';
 import close from './icon/close.svg';
@@ -24,7 +24,7 @@ const Header = () => {
             <>
                 <li><Link to='/create_product'>Create Product</Link></li>
                 <li><Link to='/genres'>Genres</Link></li>
-                <li><Link to="/library">Library</Link></li>
+                <li><Link to="/profile">Profile</Link></li>
             </>
         )
     }
@@ -33,7 +33,7 @@ const Header = () => {
             <>
                 <li><Link to='/create_product'>Sell Books</Link></li>
                 <li><Link to='/' onClick={logoutUser}>Logout</Link></li>
-                <li><Link to="/library">Library</Link></li>
+                <li><Link to="/profile">Profile</Link></li>
             
             </>
         )

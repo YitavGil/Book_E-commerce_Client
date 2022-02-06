@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Books from '../comps/MainPages/books/Books';
 
@@ -8,7 +8,8 @@ const UserAPI = (token) => {
     const [cart, setCart] = useState([]);
 
     useEffect(() =>{
-        if(token){
+        
+        if(token && token.length > 0){
             const getUser = async () =>{
                 try {
                     const res = await axios.get('/user/infor', {
