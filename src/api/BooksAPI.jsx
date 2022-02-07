@@ -3,19 +3,30 @@ import axios from 'axios';
 
 const BooksAPI = () => {
     const [books, setBooks] = useState([]);
-    const [callback, setCallback] = useState(false)
+    const [callback, setCallback] = useState(false);
+    const [genre, setGenre] = useState('');
+    const [sort, setSort] = useState('');
+    const [search, setSearch] = useState('');
+    const [page, setPage] = useState(1);
+    const [result, setResult] = useState(0);
 
     useEffect(() => {
       const getBooks = async () => {
-        const res = await axios.get('http://localhost:5000/books')
+        const res = await axios.get(`/books?limit=${page*9}&${genre}&${sort}&name[regex]=${search}`)
         setBooks(res.data.books);
+        setResult(res.data.result)
     }
        getBooks()
-     }, [callback])
+     }, [callback, genre, sort, search, page])
 
   return {
      books: [books, setBooks],
-     callback: [callback, setCallback]
+     callback: [callback, setCallback],
+     genre: [genre, setGenre],
+     sort: [sort, setSort],
+     search:[search, setSearch],
+     page: [page, setPage],
+     result: [result, setResult]
     }
 };
 

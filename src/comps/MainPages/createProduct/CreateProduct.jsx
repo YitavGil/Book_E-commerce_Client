@@ -72,7 +72,7 @@ const CreateProduct = () => {
             setImages(res.data)
 
         } catch (err) {
-            // alert(err.response.data.msg)
+            alert(err.response.data.msg)
             console.log(err);
         }
     }
@@ -81,7 +81,7 @@ const CreateProduct = () => {
         try {
             if(!isLogged) return alert("You have to be logged in to delete products")
             setLoading(true)
-            await axios.post('/destroy', {public_id: images.public_id}, {
+            await axios.post('/upload/destroy', {public_id: images.public_id}, {
                 headers: {Authorization: token}
             })
             setLoading(false)
@@ -134,7 +134,7 @@ const CreateProduct = () => {
                 loading ? <div id="file-img"><Loading /></div>
 
                 : <div id="file-img" style={styleUpload}>
-                     <img src={images ? images.url : books.imageUrl} alt="" />
+                     <img src={images ? images.url : books.imageUrl} alt="cover" />
                      <span onClick={handleDestroy}> X </span>
                 </div>
             }
