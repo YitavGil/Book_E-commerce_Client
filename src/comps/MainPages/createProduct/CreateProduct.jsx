@@ -112,9 +112,9 @@ const CreateProduct = () => {
                 })
     
             }
-            setImages(false)
-            setProduct(initialState)
             setCallback(!callback)
+            // setImages(false)
+            // setProduct(initialState)
             history.push("/")
 
         } catch (err) {

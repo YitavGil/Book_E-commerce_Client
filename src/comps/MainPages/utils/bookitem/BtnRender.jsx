@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { GlobalState } from '../../../../GlobalState';
 
-const BtnRender = ({book}) => {
+const BtnRender = ({book, deleteBook}) => {
   const state = useContext(GlobalState)
   const [isAdmin] = state.userAPI.isAdmin
   const addToCart = state.userAPI.addToCart
@@ -12,7 +12,7 @@ const BtnRender = ({book}) => {
       {
         isAdmin ? 
         <>
-            <Link id='buy-btn' to="#!">
+            <Link id='buy-btn' to="#!" onClick={deleteBook}>
                 Delete
             </Link>
             <Link id='view-btn' to={`/edit_product/${book._id}`}>

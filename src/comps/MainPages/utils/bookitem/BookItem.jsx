@@ -1,12 +1,14 @@
-import React from 'react';
-import CreateProduct from '../../createProduct/CreateProduct';
+import React, {useState} from 'react';
 import BtnRender from './BtnRender';
+import axios from 'axios';
 
-const BookItem = ({book, isAdmin}) => {
+const BookItem = ({book, setBooks, isAdmin, token, callback, setCallback}) => {
+ 
   return (
   <div className='book-card'>
      {
-        isAdmin && <input type="checkbox" checked={book.checked} />
+        isAdmin && <input type="checkbox" checked={book.checked}
+        onChange={handleCheck} />
       }
       <img src={book.imageUrl || book.images.url} alt="cover" />
       <div className='info-container'>
@@ -15,7 +17,7 @@ const BookItem = ({book, isAdmin}) => {
             <p>{book.description}</p>
       </div>
 
-      <BtnRender book={book} />
+      <BtnRender book={book} deleteBook={deleteBook}/>
   </div>
   )
 };

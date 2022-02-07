@@ -2,6 +2,7 @@ import React, {createContext, useState, useEffect} from 'react';
 import BooksAPI from './api/BooksAPI';
 import UserAPI from './api/UserAPI';
 import GenreAPI from './api/GenreAPI';
+// import ReviewAPI from './api/reviewAPI'
 import axios from 'axios';
 
 export const GlobalState = createContext()
@@ -32,7 +33,8 @@ export const DataProvider = ({children}) => {
         token: [token, setToken],
         booksAPI: BooksAPI(),
         userAPI: UserAPI(token),
-        genreAPI: GenreAPI()
+        genreAPI: GenreAPI(),
+        // reviewAPI: ReviewAPI()
     }
     return (
         <GlobalState.Provider value={state}>
