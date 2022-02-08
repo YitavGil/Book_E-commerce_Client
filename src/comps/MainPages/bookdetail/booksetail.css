@@ -52,4 +52,22 @@
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-left: 0.55rem;
+}
+.detail-links{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.currently{
+    background: #ad7e6c !important;
+}
+
+.read{
+    background: #816634 !important;
+}
+
+.none{
+    display: none;
 }

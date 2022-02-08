@@ -19,12 +19,12 @@ const Login = () => {
   const loginSubmit = async e =>{
     e.preventDefault();
     try {
-      const token = await axios.post('/user/login', {...user})
+      const res = await axios.post('/user/login', {...user})
       
       localStorage.setItem('firstLogin', true)
-      
+      console.log(res.data.accessToken);
       const [getToken, setToken] = context.token
-      setToken(token)
+      setToken(res.data.accessToken)
       history.push('/')
     } catch (err) {
       alert(err.response.data.msg)

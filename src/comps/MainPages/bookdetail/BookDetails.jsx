@@ -10,6 +10,7 @@ const BookDetails = () => {
     const [books] = state.booksAPI.books;
     const addCart = state.userAPI.addToCart
     const [bookDetail, setBookDetail] = useState([]);
+    const [isLogged] = state.userAPI.isLogged
 
     useEffect(() =>{
         if(params.id){
@@ -34,12 +35,17 @@ const BookDetails = () => {
             </div>
             <span>₪ {bookDetail.price}</span>
             <p>{bookDetail.description}</p>
-            <Link to='/cart' className='cart' onClick={() => addCart(bookDetail)}>Buy Now</Link>
+            <div className='detail-links'>
+                <Link to='/cart' className='cart' onClick={() => addCart(bookDetail)}>Buy Now</Link>
+                <Link to='/' className={isLogged ? 'cart currently' : 'none'}>Reading Now</Link>
+                <Link to='/' className={isLogged ? 'cart read' : 'none'}> Read</Link>
+                
+            </div>
         </div>
     </div>
 
     <div>
-        <h2>Related products</h2>
+        <h2>Related Products</h2>
         <div className='books'>
             {
                 books.map(book =>{

@@ -83,7 +83,7 @@ const Cart = () => {
       {
         cart.map(book => (
               <div className='detail cart' key={book._id}>
-            <img src={book.imageUrl} alt='book-cover'/>
+            <img src={book.imageUrl || book.images.url} alt='book-cover'/>
             <div className='detail-box'>
                 <h2>{book.name}</h2>
                 <h3>₪ {book.price * book.quantity}</h3>

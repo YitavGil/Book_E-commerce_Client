@@ -33,7 +33,7 @@ const Filters = () => {
         <input type="text" value={search} placeholder="Find your next read..." 
         onChange={e => setSearch(e.target.value.toLowerCase())} />
 
-          <div className="row">
+          <div className="row sort">
             <span>Sort By: </span>
             <select value={sort} onChange={e => setSort(e.target.value)}>
                 <option value=''>Newest Addition</option>
