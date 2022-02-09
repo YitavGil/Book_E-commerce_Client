@@ -36,7 +36,7 @@ const BookDetails = () => {
             <span>₪ {bookDetail.price}</span>
             <p>{bookDetail.description}</p>
             <div className='detail-links'>
-                <Link to='/cart' className='cart' onClick={() => addCart(bookDetail)}>Buy Now</Link>
+                <Link to='/cart' className='cart buy-cart' onClick={() => addCart(bookDetail)}>Buy Now</Link>
                 <Link to='/' className={isLogged ? 'cart currently' : 'none'}>Reading Now</Link>
                 <Link to='/' className={isLogged ? 'cart read' : 'none'}> Read</Link>
                 

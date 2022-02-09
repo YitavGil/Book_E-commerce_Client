@@ -8,11 +8,16 @@ const ReviewItem = (props) => {
     props.setLoaded((prev) => !prev)
 }
   }
+
+  const updateReview = async() => {
+      props.setEditReview(props.review)
+  }
   return(
       <div className='review-item'>
-          <h3>{props.review._id}</h3>
+          <h3>{props.review.user.name}</h3>
           <p>{props.review.content}</p>
-          <button onClick={deleteReview}>Delete</button>
+            <button onClick={deleteReview}>Delete</button>
+            <button className='review-update' onClick={updateReview}>Edit</button>
       </div>
   )
 };

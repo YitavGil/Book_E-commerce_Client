@@ -4,22 +4,13 @@ import { GlobalState } from '../../../GlobalState';
 import Loading from '../utils/loading/Loading';
 
 
-const initialState = {
-    name: '',
-    author: '',
-    genre: '',
-    price: 0,
-    description: '',
-    _id: ''
-}
-
 const Profile = () => {
-  const state = useContext(GlobalState)
-    const [images, setImages] = useState(false)
-    const [loading, setLoading] = useState(false)
-    const [isLogged] = state.userAPI.isLogged
-    const [token] = state.token
-    const [books] = state.booksAPI.books
+  const state = useContext(GlobalState);
+    const [images, setImages] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [isLogged] = state.userAPI.isLogged;
+    const [token] = state.token;
+    const [books] = state.booksAPI.books;
    
     
 
@@ -85,10 +76,30 @@ const Profile = () => {
                      <span onClick={handleDestroy}> X </span>
                 </div>
             }
+            <div className='user-info'>
+            <h3>Name</h3>
+            <h5>Books read: </h5>
         </div>
-        <div className='user-info'>
-            
         </div>
+
+        <div className="currently-read">
+            <h1>Currently Reading:</h1>
+            <div className="currently-box">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/512YVrem8TL._SX329_BO1,204,203,200_.jpg" alt='cover'/>
+            </div>
+        </div>
+
+        <div className="currently-read">
+            <h1>Read:</h1>
+            <div className="currently-box">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/51tl4a3VY8L._SY291_BO1,204,203,200_QL40_FMwebp_.jpg" alt='cover'/>
+            <img src="https://images-na.ssl-images-amazon.com/images/I/41YrW1-rJaL._SX260_BO1,204,203,200_.jpg" alt='cover'/>
+            <img src="https://images-na.ssl-images-amazon.com/images/I/41B-qNBFC7L._SX332_BO1,204,203,200_.jpg" alt='cover'/>
+            </div>
+        </div>
+
+
+        
     </div>
   )
 };

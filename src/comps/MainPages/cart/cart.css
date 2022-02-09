@@ -12,6 +12,9 @@
 .amount button{
     width: 40px;
     height: 40px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-radius:20px;
     border: 2px solid #f4c464;
 }
 

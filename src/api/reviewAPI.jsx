@@ -25,7 +25,7 @@ deleteReview: async (reviewId, token) =>{
     headers: {"Authorization": token},
    
   })
-  if(res.status === 201){
+  if(res.status === 200){
     return true;
   }else{
     return false;

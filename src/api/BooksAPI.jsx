@@ -12,7 +12,17 @@ const BooksAPI = () => {
 
     useEffect(() => {
       const getBooks = async () => {
-        const res = await axios.get(`/books?limit=${page*9}&${genre}&${sort}&name[regex]=${search}`)
+        let queryString = "limit=" + (page*9);
+        if (genre.length > 0) {
+          queryString += "&genre=" + genre
+        }
+        if (sort.length > 0){
+          queryString += "&sort=" + sort
+        }
+        if (search.length > 0){
+          queryString += "&name[regex]=" + search
+        }
+        const res = await axios.get(`/books?${queryString}`)
         setBooks(res.data.books);
         setResult(res.data.result)
     }

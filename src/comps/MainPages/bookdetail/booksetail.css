@@ -71,3 +71,23 @@
 .none{
     display: none;
 }
+
+.buy-cart {
+    animation: glowing 1300ms infinite;
+  }
+  
+
+@keyframes glowing {
+    0% {
+      background-color: #844492;
+      box-shadow: 0 0 3px #844492;
+    }
+    50% {
+      background-color: #a453b6;
+      box-shadow: 0 0 10px #a453b6;
+    }
+    100% {
+      background-color: #844492;
+      box-shadow: 0 0 3px #844492;
+    }
+  }

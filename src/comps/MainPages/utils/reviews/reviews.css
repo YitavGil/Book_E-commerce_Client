@@ -23,6 +23,8 @@
 .review-card button:hover{
     background-color: #bf60d4;
 }
+/*--------------- Review Item ----------------*/
+
 
 .review-item button{
     color: white;
@@ -35,4 +37,9 @@
     background: #816634;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.review-item .review-update{
+    right: 8.5rem;
+    background: #ad7e6c;
 }

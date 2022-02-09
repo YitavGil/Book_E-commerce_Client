@@ -3,11 +3,13 @@ import ReviewItem from './ReviewItem';
 import reviewAPI from '../../../../api/reviewAPI';
 import { GlobalState } from '../../../../GlobalState';
 import AddReview from './AddReview';
+import EditReview from './EditReview';
 
 const Reviews = (props) => {
     const [reviews, setReviews] = useState([]);
     const context = useContext(GlobalState);
-    const [loaded, setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(false);
+    const [editReview, setEditReview] = useState(null)
 
     const loadReviews = async() =>{
         const [token] = context.token
@@ -27,9 +29,12 @@ const Reviews = (props) => {
 
   return(
       <div>
-          <AddReview bookId={props.bookId} token={context.token[0]} setLoaded={setLoaded}/>
+          {editReview === null ? <AddReview bookId={props.bookId} token={context.token[0]} setLoaded={setLoaded}/> 
+          :
+          <EditReview editReview={editReview} bookId={props.bookId} token={context.token[0]} setLoaded={setLoaded}/>
+          }
           {reviews && reviews.map(review => {
-              return <ReviewItem key={review._id} review={review} token={context.token[0]} setLoaded={setLoaded}/>
+              return <ReviewItem key={review._id} review={review} token={context.token[0]} setLoaded={setLoaded} setEditReview={setEditReview}/>
           })}
       </div>
   )
