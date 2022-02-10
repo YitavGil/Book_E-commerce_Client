@@ -12,6 +12,7 @@ const BookItem = ({book, isAdmin, handleDelete, handleCheck, isInRead}) => {
       <img src={book.imageUrl || book.images.url} alt="cover" />
       <div className={isInRead ? 'info-container' : "info-container read-item"}>
             <h2 name={book.name}>{book.name}</h2>
+            <h4>{book.author}</h4>
            {isInRead ? <p>{book.description}</p> : ""}
             <span>{isInRead ? `₪${book.price}` : `${book.author}`}</span>
       </div>

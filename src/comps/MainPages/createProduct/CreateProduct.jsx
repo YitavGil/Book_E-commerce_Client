@@ -136,7 +136,7 @@ const CreateProduct = () => {
                 loading ? <div id="file-img"><Loading /></div>
 
                 : <div id="file-img" style={styleUpload}>
-                     <img src={images ? images : books.imageUrl} alt="cover" />
+                     <img src={images ? images.url : books.imageUrl} alt="cover" />
                      <span onClick={handleDestroy}> X </span>
                 </div>
             }
