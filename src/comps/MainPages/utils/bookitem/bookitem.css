@@ -86,3 +86,23 @@
 .info-container h2{
     text-transform: capitalize;
 }
+
+/* --------- In profile Page ---------- */
+.read-card{
+    height: 400px;
+    width: 500px;
+}
+
+
+
+.read-item{
+    text-align: center;
+    height: 70px;
+    padding: 10px 0;
+}
+
+.read-item span{
+    color: #9a50aa;
+    font-weight: bold;
+}
+

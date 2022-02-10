@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import axios from 'axios';
 import { GlobalState } from '../../../GlobalState';
 import Loading from '../utils/loading/Loading';
+import BookItem from '../utils/bookitem/BookItem';
 
 
 const Profile = () => {
@@ -11,9 +12,11 @@ const Profile = () => {
     const [isLogged] = state.userAPI.isLogged;
     const [token] = state.token;
     const [books] = state.booksAPI.books;
+    const [read, setRead] = state.userAPI.read;
+    const [user] = state.userAPI.user
    
     
-
+    //--------Images
     const handleUpload = async e =>{
         e.preventDefault()
         try {
@@ -59,10 +62,34 @@ const Profile = () => {
         }
     }
 
-
+   
     const styleUpload = {
         display: images ? "block" : "none"
     }
+
+    //--------/Images
+
+    //-------/Library
+    const handleRead = async (read) =>{ 
+        await axios.patch('/user/addtoread', {read}, {
+          headers: {Authorization: token}
+        })
+      }
+      const removeFromRead = (id) =>{
+        if(window.confirm("Do you wish to remove this item from your library?")){
+         read.forEach((book, index) => {
+            if(book._id === id){
+             read.splice(index, 1)
+            }
+          })
+    
+          setRead([...read])
+          handleRead(read)
+        }
+      }
+
+   
+
 
   return (
     <div className='profile-page'>
@@ -77,27 +104,24 @@ const Profile = () => {
                 </div>
             }
             <div className='user-info'>
-            <h3>Name</h3>
-            <h5>Books read: </h5>
+            <h3>Name: {user.name}</h3>
+            <h5>Books read: <span>{read.length}</span> </h5>
         </div>
         </div>
-
+        
+        <h2 className='library-title'>Library</h2>
         <div className="currently-read">
-            <h1>Currently Reading:</h1>
-            <div className="currently-box">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/512YVrem8TL._SX329_BO1,204,203,200_.jpg" alt='cover'/>
+        {    
+        read.map(book => (
+            <div key={book._id} className="read-box">
+            <BookItem book={book} isBtnRender={false}/>
+                <button className="delete-read" onClick={() => removeFromRead(book._id)}>Remove</button>
             </div>
-        </div>
-
-        <div className="currently-read">
-            <h1>Read:</h1>
-            <div className="currently-box">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/51tl4a3VY8L._SY291_BO1,204,203,200_QL40_FMwebp_.jpg" alt='cover'/>
-            <img src="https://images-na.ssl-images-amazon.com/images/I/41YrW1-rJaL._SX260_BO1,204,203,200_.jpg" alt='cover'/>
-            <img src="https://images-na.ssl-images-amazon.com/images/I/41B-qNBFC7L._SX332_BO1,204,203,200_.jpg" alt='cover'/>
-            </div>
-        </div>
-
+        ))
+        
+      }
+     
+    </div>
 
         
     </div>

@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import { Link, useHistory  } from 'react-router-dom';
-import axios from 'axios';
 import { GlobalState } from '../../../GlobalState';
+import API from '../../../api/serverAPI';
  
 
 const Login = () => {
@@ -19,11 +19,14 @@ const Login = () => {
   const loginSubmit = async e =>{
     e.preventDefault();
     try {
-      const res = await axios.post('/user/login', {...user})
-      
+      const res = await API.post('/user/login', {...user})
+      console.log(res);
       localStorage.setItem('firstLogin', true)
+      localStorage.setItem('userID', res.data.user._id)
+      localStorage.setItem('userToken', res.data.accessToken)
+
       console.log(res.data.accessToken);
-      const [getToken, setToken] = context.token
+      const [setToken] = context.token
       setToken(res.data.accessToken)
       history.push('/')
     } catch (err) {

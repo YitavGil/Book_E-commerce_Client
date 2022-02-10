@@ -23,7 +23,7 @@ const BtnRender = ({book, handleDelete}) => {
           <Link id='buy-btn' to="#!" onClick={() => addToCart(book)}>
                Buy Now
           </Link>
-          <Link id='view-btn' to={`/detail/${book._id}`}>
+          <Link id='view-btn' to={`/detail/${book._id}`} state={{book}}>
                View
           </Link>
         </>

@@ -1,22 +1,22 @@
 import React from 'react';
 import BtnRender from './BtnRender';
 
-const BookItem = ({book, isAdmin, handleDelete, handleCheck}) => {
+const BookItem = ({book, isAdmin, handleDelete, handleCheck, isInRead}) => {
  
   return (
-  <div className='book-card'>
+  <div className={isInRead ? 'book-card' : 'book-card read-card' }>
      {
         isAdmin && <input type="checkbox" checked={book.checked}
         onChange={() => handleCheck(book._id)} />
       }
       <img src={book.imageUrl || book.images.url} alt="cover" />
-      <div className='info-container'>
+      <div className={isInRead ? 'info-container' : "info-container read-item"}>
             <h2 name={book.name}>{book.name}</h2>
-            <span>₪{book.price}</span>
-            <p>{book.description}</p>
+           {isInRead ? <p>{book.description}</p> : ""}
+            <span>{isInRead ? `₪${book.price}` : `${book.author}`}</span>
       </div>
 
-      <BtnRender book={book} handleDelete={handleDelete}/>
+     {isInRead && <BtnRender book={book} handleDelete={handleDelete}/>}
   </div>
   )
 };

@@ -4,13 +4,14 @@ import { GlobalState } from '../../../GlobalState';
 import BookItem from '../utils/bookitem/BookItem';
 import Reviews from '../utils/reviews/Reviews';
 
-const BookDetails = () => {
+const BookDetails = (props) => {
     const params = useParams();
     const state = useContext(GlobalState);
     const [books] = state.booksAPI.books;
-    const addCart = state.userAPI.addToCart
+    const addCart = state.userAPI.addToCart;
     const [bookDetail, setBookDetail] = useState([]);
-    const [isLogged] = state.userAPI.isLogged
+    const [isLogged] = state.userAPI.isLogged;
+    const addRead = state.userAPI.addToRead
 
     useEffect(() =>{
         if(params.id){
@@ -25,6 +26,7 @@ const BookDetails = () => {
     if(bookDetail.length === 0){
         return null
     }
+    console.log(props);
   return (
       <>
     <div className='detail'>
@@ -38,7 +40,7 @@ const BookDetails = () => {
             <div className='detail-links'>
                 <Link to='/cart' className='cart buy-cart' onClick={() => addCart(bookDetail)}>Buy Now</Link>
                 <Link to='/' className={isLogged ? 'cart currently' : 'none'}>Reading Now</Link>
-                <Link to='/' className={isLogged ? 'cart read' : 'none'}> Read</Link>
+                <Link to='/' className={isLogged ? 'cart read' : 'none'} onClick={() => addRead(bookDetail)}> Read</Link>
                 
             </div>
         </div>
@@ -50,7 +52,7 @@ const BookDetails = () => {
             {
                 books.map(book =>{
                     return book.genre.name === bookDetail.genre.name
-                    ? <BookItem key={book._id} book={book} /> : null
+                    ? <BookItem isInRead={true} key={book._id} book={book} /> : null
                 })
             }
         </div>

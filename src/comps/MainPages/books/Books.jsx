@@ -74,7 +74,7 @@ const Books = () => {
           {
             books.map(book =>{
               return <BookItem key={book._id} book={book} isAdmin={isAdmin}
-              isAdmin={isAdmin} handleDelete={handleDelete} handleCheck={handleCheck}/>
+              handleDelete={handleDelete} handleCheck={handleCheck} isInRead={true}/>
             })
           }
       </div>

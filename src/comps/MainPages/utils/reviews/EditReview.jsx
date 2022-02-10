@@ -8,7 +8,7 @@ const EditReview = (props) => {
     const handleReview = async(e) => {
         e.preventDefault()
         console.log(props.token);
-      const res = await reviewAPI.postReview(props.bookId, review, props.token)
+      const res = await reviewAPI.updateReview(props.bookId, review, props.token)
       if (res) {
           props.setLoaded((prev) => !prev)
       }

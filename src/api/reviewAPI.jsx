@@ -20,6 +20,18 @@ postReview: async(bookId, review, token) => {
     return false;
   }
 },
+updateReview: async(bookId, review, token) => {
+  const reviewBody = {bookId, content: review}
+  const res = await axios.patch(`/review`,reviewBody, {
+    headers: {"Authorization": token},
+   
+  })
+  if(res.status === 201){
+    return true;
+  }else{
+    return false;
+  }
+},
 deleteReview: async (reviewId, token) =>{
   const res = await axios.delete(`/review/${reviewId}`, {
     headers: {"Authorization": token},
