@@ -31,7 +31,7 @@ const Register = () => {
   <div className='login-page'>
       <form onSubmit={registerSubmit}>
         <h2>Register</h2>
-        <input type="text" name='name' required             placeholder='Name' value={user.name} onChange={onInputChange}/>
+        <input type="text" name='name' required placeholder='Name' value={user.name} onChange={onInputChange}/>
 
         <input type="email" name='email' required placeholder='Email' value={user.email} onChange={onInputChange}/>
 

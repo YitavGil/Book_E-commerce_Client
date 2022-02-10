@@ -14,7 +14,7 @@ const BookItem = ({book, isAdmin, handleDelete, handleCheck, isInRead}) => {
             <h2 name={book.name}>{book.name}</h2>
             <h4>{book.author}</h4>
            {isInRead ? <p>{book.description}</p> : ""}
-            <span>{isInRead ? `₪${book.price}` : `${book.author}`}</span>
+            <span>{isInRead ? `₪${book.price}` : ``}</span>
       </div>
 
      {isInRead && <BtnRender book={book} handleDelete={handleDelete}/>}
