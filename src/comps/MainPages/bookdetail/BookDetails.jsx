@@ -57,8 +57,8 @@ const BookDetails = (props) => {
             }
         </div>
     </div>
-
-    <Reviews bookId={params.id}/>
+    {isLogged ? <Reviews bookId={params.id}/> : ""}
+    
   </>
   )
 };
