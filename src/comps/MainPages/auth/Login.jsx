@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import { Link, useHistory  } from 'react-router-dom';
 import { GlobalState } from '../../../GlobalState';
 import API from '../../../api/serverAPI';
+import axios from 'axios';
  
 
 const Login = () => {
@@ -25,12 +26,13 @@ const Login = () => {
       localStorage.setItem('userID', res.data.user._id)
       localStorage.setItem('userToken', res.data.accessToken)
 
-      console.log(res.data.accessToken);
-      const [setToken] = context.token
+      // console.log(res.data.accessToken);
+      const setToken = context.setToken;
+      // console.log('setToken', context.setToken);
       setToken(res.data.accessToken)
       history.push('/')
     } catch (err) {
-      alert(err.response.data.msg)
+     console.log(err);
     }
   }
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { GlobalState } from '../../../GlobalState';
 import Loading from '../utils/loading/Loading';
 import { useHistory, useParams } from 'react-router-dom';
+import API from '../../../api/serverAPI'
 
 const initialState = {
     name: '',
@@ -20,7 +21,7 @@ const CreateProduct = () => {
     const [images, setImages] = useState(false)
     const [loading, setLoading] = useState(false)
     const [isLogged] = state.userAPI.isLogged
-    const [token] = state.token
+    const token = state.token
 
     const history = useHistory()
     const param = useParams()
@@ -64,7 +65,7 @@ const CreateProduct = () => {
             formData.append('file', file)
 
             setLoading(true)
-            const res = await axios.post('/upload/upload', formData, {
+            const res = await API.post('/upload/upload', formData, {
                 headers: {'content-type': 'multipart/form-data', Authorization: token}
                 
             })
@@ -82,7 +83,7 @@ const CreateProduct = () => {
         try {
             if(!isLogged) return alert("You have to be logged in to delete products")
             setLoading(true)
-            await axios.post('/upload/destroy', {public_id: images.public_id}, {
+            await API.post('/upload/destroy', {public_id: images.public_id}, {
                 headers: {Authorization: token}
             })
             setLoading(false)
@@ -104,11 +105,11 @@ const CreateProduct = () => {
             if(!images) return alert("You must include an image")
 
             if(onEdit){
-                await axios.put(`/books/${product._id}`, {...product, images}, {
+                await API.put(`/books/${product._id}`, {...product, images}, {
                     headers: {Authorization: token}
                 })
             }else{
-                await axios.post('/books', {...product, images}, {
+                await API.post('/books', {...product, images}, {
                     headers: {Authorization: token}
                 })
     

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { GlobalState } from '../../../GlobalState';
 import Loading from '../utils/loading/Loading';
 import BookItem from '../utils/bookitem/BookItem';
+import API from '../../../api/serverAPI'
 
 
 const Profile = () => {
@@ -10,7 +11,7 @@ const Profile = () => {
     const [images, setImages] = useState(false);
     const [loading, setLoading] = useState(false);
     const [isLogged] = state.userAPI.isLogged;
-    const [token] = state.token;
+    const token = state.token;
     const [books] = state.booksAPI.books;
     const [read, setRead] = state.userAPI.read;
     const [user] = state.userAPI.user
@@ -35,7 +36,7 @@ const Profile = () => {
             formData.append('file', file)
 
             setLoading(true)
-            const res = await axios.post('/upload/upload', formData, {
+            const res = await API.post('/upload/upload', formData, {
                 headers: {'content-type': 'multipart/form-data', Authorization: token}
                 
             })
@@ -52,7 +53,7 @@ const Profile = () => {
         try {
             if(!isLogged) return alert("You have to be logged in to delete products")
             setLoading(true)
-            await axios.post('/upload/destroy', {public_id: images.public_id}, {
+            await API.post('/upload/destroy', {public_id: images.public_id}, {
                 headers: {Authorization: token}
             })
             setLoading(false)
@@ -71,7 +72,7 @@ const Profile = () => {
 
     //-------/Library
     const handleRead = async (read) =>{ 
-        await axios.patch('/user/addtoread', {read}, {
+        await API.patch('/user/addtoread', {read}, {
           headers: {Authorization: token}
         })
       }

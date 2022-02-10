@@ -5,6 +5,7 @@ import Header from "./comps/Header/Header";
 import Pages from "./comps/MainPages/Pages";
 
 function App() {
+  
   return (
     <DataProvider>
       <Router>

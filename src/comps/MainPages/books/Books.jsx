@@ -5,6 +5,7 @@ import Loading from '../utils/loading/Loading';
 import axios from 'axios';
 import Filters from './Filters';
 import LoadMore from './LoadMore';
+import API from '../../../api/serverAPI'
 
 
 
@@ -12,7 +13,7 @@ const Books = () => {
   const state = useContext(GlobalState)
   const [books, setBooks] = state.booksAPI.books
   const [isAdmin] = state.userAPI.isAdmin
-  const [token] = state.token
+  const token = state.token
   const [callback, setCallback] = state.booksAPI.callback
   const [loading, setLoading] = useState(false)
   const [isCheck, setIsCheck] = useState(false)
@@ -20,10 +21,10 @@ const Books = () => {
   const handleDelete = async (id, public_id) =>{
     try {
       setLoading(true)
-      const destroyImg = axios.post('/upload/destroy', {public_id},{
+      const destroyImg = API.post('/upload/destroy', {public_id},{
         headers: {Authorization: token}
       })
-      const deleteBook = axios.delete(`/books/${id}`, {
+      const deleteBook = API.delete(`/books/${id}`, {
         headers: {Authorization: token}
       })
 

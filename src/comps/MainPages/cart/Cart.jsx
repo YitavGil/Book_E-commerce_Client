@@ -2,12 +2,13 @@ import React, {useContext, useState, useEffect} from 'react';
 import {GlobalState} from '../../../GlobalState';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import PayPalButton from './PayPalButton'
+import PayPalButton from './PayPalButton';
+import API from '../../../api/serverAPI'
 
 const Cart = () => {
   const state = useContext(GlobalState)
   const [cart, setCart] = state.userAPI.cart
-  const [token] = state.token
+  const token = state.token
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const Cart = () => {
   }, [cart])
 
   const handleCart = async (cart) =>{ //Changes in the cart will remain after refresh
-    await axios.patch('/user/addtocart', {cart}, {
+    await API.patch('/user/addtocart', {cart}, {
       headers: {Authorization: token}
     })
   }
@@ -66,7 +67,7 @@ const Cart = () => {
   const transferSuccess = async(payment) => {
     const {paymentID, address} = payment;
 
-    await axios.post('/payment', {cart, paymentID, address},{
+    await API.post('/payment', {cart, paymentID, address},{
       headers: {Authorization: token}
     })
 

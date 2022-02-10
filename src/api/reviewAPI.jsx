@@ -1,16 +1,19 @@
 import axios from 'axios';
+import API from './serverAPI'
 
 const reviewAPI =  {
- getReviews: async (bookId, token) => {
-    const res = await axios.get(`/review/`+ bookId, {
+  getReviews: async (bookId, token) => {
+   console.log('rewfghjkl');
+    const res = await API.get(`/review/`+ bookId, {
       headers: {Authorization: token}
     }) 
     
     return res.data;
 },
 postReview: async(bookId, review, token) => {
+  console.log('postReview', token)
   const reviewBody = {bookId, content: review}
-  const res = await axios.post(`/review`,reviewBody, {
+  const res = await API.post(`/review`,reviewBody, {
     headers: {"Authorization": token},
    
   })
@@ -22,7 +25,7 @@ postReview: async(bookId, review, token) => {
 },
 updateReview: async(bookId, review, token) => {
   const reviewBody = {bookId, content: review}
-  const res = await axios.patch(`/review`,reviewBody, {
+  const res = await API.patch(`/review`,reviewBody, {
     headers: {"Authorization": token},
    
   })
@@ -33,7 +36,7 @@ updateReview: async(bookId, review, token) => {
   }
 },
 deleteReview: async (reviewId, token) =>{
-  const res = await axios.delete(`/review/${reviewId}`, {
+  const res = await API.delete(`/review/${reviewId}`, {
     headers: {"Authorization": token},
    
   })

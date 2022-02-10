@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import API from '../../../api/serverAPI'
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -15,12 +16,13 @@ const Register = () => {
   const registerSubmit = async e =>{
     e.preventDefault();
     try {
-      await axios.post('/user/register', {...user})
+      await API.post('/user/register', {...user})
 
       localStorage.setItem('firstLogin', true)
 
       window.location.href = '/';
     } catch (err) {
+      
       alert(err.response.data.msg)
     }
   }

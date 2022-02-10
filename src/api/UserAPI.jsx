@@ -3,6 +3,7 @@ import axios from 'axios';
 import Books from '../comps/MainPages/books/Books';
 import API from './serverAPI';
 
+
 const UserAPI = (token) => {
     const [isLogged, setIsLogged] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
@@ -17,7 +18,7 @@ const UserAPI = (token) => {
         if(token && token.length > 0){
             const getUser = async () =>{
                 try {
-                    const res = await axios.get('/user/infor', {
+                    const res = await API.get('/user/infor', {
                         headers: {Authorization: token}
                     })
 
@@ -61,7 +62,7 @@ const UserAPI = (token) => {
         if(check){
             setCart([...cart, {...product, quantity:1}])
 
-            await axios.patch('/user/addtocart', {cart: [...cart, {...product, quantity:1}]}, {
+            await API.patch('/user/addtocart', {cart: [...cart, {...product, quantity:1}]}, {
                 headers: {Authorization: token}
             })
         }else {
@@ -77,7 +78,7 @@ const UserAPI = (token) => {
         if(check){
             setRead([...read, {...product, quantity:1}])
 
-            await axios.patch('/user/addtoread', {read: [...read, {...product, quantity:1}]}, {
+            await API.patch('/user/addtoread', {read: [...read, {...product, quantity:1}]}, {
                 headers: {Authorization: token}
             })
         }else {

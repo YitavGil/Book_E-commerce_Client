@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import API from './serverAPI';
 
 const GenreAPI = () => {
     const [genres, setGenres] = useState([]);
@@ -7,7 +8,7 @@ const GenreAPI = () => {
 
     useEffect(() =>{
         const getGenres = async() =>{
-            const res = await axios.get('/genres')
+            const res = await API.get('/genres')
             setGenres(res.data)
         }
 

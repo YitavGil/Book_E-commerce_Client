@@ -7,7 +7,7 @@ const AddReview = (props) => {
 
     const handleReview = async(e) => {
         e.preventDefault()
-        console.log(props.token);
+        console.log('handleReview token',props.token);
       const res = await reviewAPI.postReview(props.bookId, review, props.token)
       if (res) {
           props.setLoaded((prev) => !prev)

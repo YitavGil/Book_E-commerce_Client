@@ -12,7 +12,7 @@ const Reviews = (props) => {
     const [editReview, setEditReview] = useState(null)
 
     const loadReviews = async() =>{
-        const [token] = context.token
+        const token = context.token
         const reviews = await reviewAPI.getReviews(props.bookId, token)
         console.log(reviews);
         setReviews(reviews)
@@ -29,12 +29,12 @@ const Reviews = (props) => {
 
   return(
       <div>
-          {editReview === null ? <AddReview bookId={props.bookId} token={context.token[0]} setLoaded={setLoaded}/> 
+          {editReview === null ? <AddReview bookId={props.bookId} token={context.token} setLoaded={setLoaded}/> 
           :
-          <EditReview editReview={editReview} bookId={props.bookId} token={context.token[0]} setLoaded={setLoaded}/>
+          <EditReview editReview={editReview} bookId={props.bookId} token={context.token} setLoaded={setLoaded}/>
           }
           {reviews && reviews.map(review => {
-              return <ReviewItem key={review._id} review={review} token={context.token[0]} setLoaded={setLoaded} setEditReview={setEditReview}/>
+              return <ReviewItem key={review._id} review={review} token={context.token} setLoaded={setLoaded} setEditReview={setEditReview}/>
           })}
       </div>
   )

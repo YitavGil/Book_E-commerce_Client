@@ -1,12 +1,13 @@
 import React, {useState, useContext} from 'react';
 import { GlobalState } from '../../../GlobalState';
 import axios from 'axios';
+import API from '../../../api/serverAPI'
 
 const Genres = () => {
     const state = useContext(GlobalState)
     const [genres] = state.genreAPI.genres
     const [genre, setGenre] = useState('')
-    const [token] = state.token
+    const token = state.token
     const [callback, setCallback] = state.genreAPI.callback
     const [onEdit, setOnEdit] = useState(false)
     const [id, setID] = useState('')
@@ -15,13 +16,13 @@ const Genres = () => {
         e.preventDefault()
         try {
             if(onEdit) {
-                const res = await axios.put(`/genres/${id}`, {name: genre},{
+                const res = await API.put(`/genres/${id}`, {name: genre},{
                     headers: {Authorization: token} 
             })
             alert(res.data.msg)
 
             } else{
-                const res = await axios.post('/genres', {name: genre},{
+                const res = await API.post('/genres', {name: genre},{
                     headers: {Authorization: token} 
             })
             
@@ -44,7 +45,7 @@ const Genres = () => {
 
     const deleteGenre = async id =>{
         try {
-            const res = await axios.delete(`genres/${id}`, {
+            const res = await API.delete(`genres/${id}`, {
                 headers: {Authorization: token}
             })
             alert(res.data.msg)

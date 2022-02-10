@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import API from './serverAPI';
 
 const BooksAPI = () => {
     const [books, setBooks] = useState([]);
@@ -14,15 +15,15 @@ const BooksAPI = () => {
       const getBooks = async () => {
         let queryString = "limit=" + (page*9);
         if (genre.length > 0) {
-          queryString += "&genre=" + genre
+          queryString += "&" + genre
         }
         if (sort.length > 0){
-          queryString += "&sort=" + sort
+          queryString += "&" + sort
         }
         if (search.length > 0){
           queryString += "&name[regex]=" + search
         }
-        const res = await axios.get(`/books?${queryString}`)
+        const res = await API.get(`/books?${queryString}`)
         setBooks(res.data.books);
         setResult(res.data.result)
     }
